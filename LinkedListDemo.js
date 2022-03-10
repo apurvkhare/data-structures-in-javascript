@@ -64,6 +64,56 @@ class LinkedList {
             this.tail = node
         return
     }
+
+    // remove node from the head of the linked list
+    remove(){
+        // 1 -> 2 -> 3 -> 4
+        if(this.head){
+            let curr = this.head
+            this.head = this.head.next
+            curr.next = null
+        }
+    }
+
+    // remove node from the end of the linked list
+    delete(){
+        // 1 -> 2 -> 3 -> 4 -> null
+        if(this.head){
+            let curr = this.head
+            while(curr.next.next !== null){
+                curr = curr.next
+            }
+            curr.next = null
+            this.tail = curr
+        }
+    }
+
+    // remove the node at the given index
+    removeAt(index){
+        // 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> null
+        let curr = this.head
+        let counter = 1
+        while(curr.next !== null && counter < index - 1){
+            curr = curr.next
+            counter++
+        }
+        if(curr.next !== null){
+            let removedNode = curr.next
+            curr.next = curr.next.next
+            removedNode.next = null
+        }
+    }
+
+    showLinkedList(){
+        // 1 -> 2 -> 3 -> 4
+        let output = []
+        let curr = this.head
+        while(curr !== null){
+            output.push(curr.value)
+            curr = curr.next
+        }
+        console.log(output.toString())
+    }
 }
 
 const node1 = new Node('Tony')
@@ -80,14 +130,19 @@ const node6 = new Node('Bruce')
 // node5.next = node6
 
 const ll = new LinkedList('Steve')
-console.log(ll.head)
+ll.showLinkedList()
 ll.add(node1)
-console.log(ll.head)
+ll.showLinkedList()
 ll.append(node6)
 ll.append(node2)
-console.log(ll.head)
+ll.showLinkedList()
 ll.insert(node3, 3)
-console.log(ll.head)
-
-console.log(node1)
-
+ll.showLinkedList()
+ll.remove()
+ll.showLinkedList()
+ll.delete()
+ll.showLinkedList()
+ll.removeAt(2)
+ll.showLinkedList()
+ll.removeAt(5)
+ll.showLinkedList()
