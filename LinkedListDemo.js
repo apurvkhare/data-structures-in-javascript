@@ -54,12 +54,14 @@ class LinkedList {
         // 'Tony' -> 'Peter -> 'Steve' -> 'Bruce' -> null
         let currIndex = 1
         let curr = this.head
-        while(currIndex < index){
+        while(curr !== null && currIndex < index){
             curr = curr.next
             currIndex++
         }
-        node.next = curr.next
-        curr.next = node
+        if(curr){
+            node.next = curr.next
+            curr.next = node
+        }
         if(node.next === null)
             this.tail = node
         return
@@ -90,7 +92,6 @@ class LinkedList {
 
     // remove the node at the given index
     removeAt(index){
-        // 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> null
         let curr = this.head
         let counter = 1
         while(curr.next !== null && counter < index - 1){
@@ -116,6 +117,60 @@ class LinkedList {
     }
 }
 
+// const reverseLinkedList = (head) => {
+//     if(!head || !head.next){
+//         return head
+//     }
+
+//     let prev = head
+//     let curr = head.next
+//     // 1 -> 2 -> 3 -> 4 -> null
+//     while(curr.next !== null){
+//         let temp = curr
+//         curr = curr.next
+//         temp.next = prev
+//         prev = temp
+//     }
+// }
+
+const recursiveReverseLL = head => {
+    if(!head || !head.next){
+        return head
+    }
+
+    let reversedHead = recursiveReverseLL(head.next)
+
+    head.next.next = head
+
+    head.next = null
+
+    return reversedHead
+}
+
+const removeNthNodeFromLast = (head, index) => {
+    if(!head){
+        return
+    }
+
+    let p1 = head, p2 = head
+    let count = 0
+    while(p2 !== null && count < index){
+        p2 = p2.next
+        count++
+    }
+    if(p2){
+        while(p2.next !== null){
+            p1=p1.next
+            p2=p2.next
+        }
+        let removedNode = p1.next
+        p1.next = p1.next.next
+        removedNode.next = null
+    }
+
+    return head
+}
+
 const node1 = new Node('Tony')
 const node2 = new Node('Peter')
 const node3 = new Node('Natasha')
@@ -138,11 +193,18 @@ ll.append(node2)
 ll.showLinkedList()
 ll.insert(node3, 3)
 ll.showLinkedList()
-ll.remove()
+// ll.remove()
+// ll.showLinkedList()
+// ll.delete()
+// ll.showLinkedList()
+// ll.removeAt(2)
+// ll.showLinkedList()
+// ll.removeAt(5)
+// ll.showLinkedList()
+// ll.insert(node3, 100)
+// ll.showLinkedList()
+
+ll.head = recursiveReverseLL(ll.head)
 ll.showLinkedList()
-ll.delete()
-ll.showLinkedList()
-ll.removeAt(2)
-ll.showLinkedList()
-ll.removeAt(5)
+ll.head = removeNthNodeFromLast(ll.head, 3)
 ll.showLinkedList()
