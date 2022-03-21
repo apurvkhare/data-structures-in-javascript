@@ -171,6 +171,35 @@ const removeNthNodeFromLast = (head, index) => {
     return head
 }
 
+const iterativeReverseLL = (head) => {
+    let prev = null
+    let curr = head
+
+    while(curr !== null){
+        let temp = curr.next
+        curr.next = prev
+        prev = curr
+        curr = temp
+    }
+
+    return prev
+}
+
+const detectCycle = head => {
+    let p1=head
+    let p2=head
+
+    // 1 -> 2 -> 3 -> 4 -> null
+    while(p2.next !== null && p2.next.next !== null){
+        p1 = p1.next
+        p2 = p2.next.next
+        if(p1 === p2)
+            return true
+    }
+
+    return false
+}
+
 const node1 = new Node('Tony')
 const node2 = new Node('Peter')
 const node3 = new Node('Natasha')
@@ -204,7 +233,18 @@ ll.showLinkedList()
 // ll.insert(node3, 100)
 // ll.showLinkedList()
 
-ll.head = recursiveReverseLL(ll.head)
+// ll.head = recursiveReverseLL(ll.head)
+ll.head = iterativeReverseLL(ll.head)
 ll.showLinkedList()
-ll.head = removeNthNodeFromLast(ll.head, 3)
-ll.showLinkedList()
+// ll.head = removeNthNodeFromLast(ll.head, 3)
+// ll.showLinkedList()
+
+const n1 = new Node('1')
+n1.next = new Node('2')
+n1.next.next = new Node('3')
+n1.next.next.next = new Node('4')
+n1.next.next.next.next = new Node('5')
+n1.next.next.next.next.next = n1.next.next
+
+console.log("Does LL have cycle", detectCycle(n1))
+console.log("Does LL have a cycle", detectCycle(ll.head))
