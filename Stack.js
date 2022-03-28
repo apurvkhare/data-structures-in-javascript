@@ -73,11 +73,13 @@ class Queue {
     peek() {
         let lastElement
         if (!this.isEmpty()) {
-            for (var i = 0; i < this.stack.length; i++) {
+            const stackLength = this.stack.length
+            for (var i = 0; i < stackLength; i++) {
                 this.tempStack.push(this.stack.pop())
             }
             lastElement = this.stack[stack.length - 1]
-            for (var i = 0; i < this.tempStack.length; i++) {
+            const tempStackLength = this.tempStack.length
+            for (var i = 0; i < tempStackLength; i++) {
                 this.stack.push(this.tempStack.pop())
             }
         }
