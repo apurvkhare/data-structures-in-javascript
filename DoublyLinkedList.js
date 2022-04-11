@@ -50,7 +50,7 @@ class DoublyLinkedList {
 
     //remove the node at the tail
     delete() {
-        if (this.tail) {
+        if (this.tail && this.tail.prev) {
             this.tail = this.tail.prev
             this.tail.next.prev = null
             this.tail.next = null
