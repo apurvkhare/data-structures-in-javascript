@@ -8,7 +8,8 @@ class Node {
 
 class DoublyLinkedList {
     constructor(value) {
-        const newNode = new Node(value)
+        let newNode = null
+        if (value) newNode = new Node(value)
         this.head = newNode
         this.tail = newNode
     }
@@ -19,11 +20,12 @@ class DoublyLinkedList {
         if (!this.head) {
             this.head = newNode
             this.tail = newNode
-            return
+            return newNode
         }
         this.head.prev = newNode
         newNode.next = this.head
         this.head = newNode
+        return newNode
     }
 
     //add a new node to tail
@@ -58,6 +60,8 @@ class DoublyLinkedList {
     }
 
     show() {
+        if(this.head == null)
+            return
         let arr = []
         let curr = this.head
         while (curr !== this.tail) {
