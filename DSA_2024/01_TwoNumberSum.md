@@ -60,6 +60,9 @@ function twoNumberSum(array, targetSum) {
 // Space complexity - O(n)
 ```
 
+> [!CAUTION]
+> The solution below will not work if you are asked to return the indices instead of the elements 
+
 ```js
 /*
 sort the array, now take two pointers one at i=0 and one at i=array.length - 1
