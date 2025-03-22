@@ -12,6 +12,14 @@ array = [1,2,3,5,6,8,9]
 [1, 4, 9, 25, 36, 64, 81]
 ```
 
+<details>
+  <summary>Brute Force solution approach</summary>
+  Iterate over the entire array, square each element. Then sort the squared array beacuse the input array might have negative numbers
+</details>
+
+<details>
+  <summary>Brute Force solution</summary>
+
 ```js
 /*
 BRUTE FORCE
@@ -27,6 +35,15 @@ function sortedSquaredArray(array) {
 // Time complexity - O(nlog(n))
 // Space complexity - O(n)
 ```
+</details>
+
+<details>
+  <summary>Optimal solution approach</summary>
+  Use two pointers one from starting of the array and one from end of the array. Initiate an empty result array. Compare the absolute value of p1 and p2 and add the larger one to the result array starting from the last index and move that pointer inwards. Continue till the length of the array.
+</details>
+
+<details>
+  <summary>Optimal solution</summary>
 
 ```js
 /* 
@@ -51,13 +68,6 @@ function sortedSquaredArray(array) {
 	  result[i] = array[p2]**2
       p2--
     }
-    /* else if(Math.abs(array[p2]) > Math.abs(array[p1])){
-      result[i] = array[p2]**2
-      p2--
-    } else if(Math.abs(array[p2]) === Math.abs(array[p1])) {
-      result[i] = array[p2]**2
-      p2--
-    }*/
     i--
   }
   return result;
@@ -66,3 +76,9 @@ function sortedSquaredArray(array) {
 // Time complexity - O(n)
 // Space complexity - O(n)
 ```
+</details>
+
+### Similar problems
+
+- [Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/description/)
+- [Sort Transformed Array](https://leetcode.com/problems/sort-transformed-array/description/)

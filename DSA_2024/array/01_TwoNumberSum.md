@@ -16,13 +16,15 @@ targetSum = 10
 
 [-1, 11]
 ```
+<details>
+  <summary>Brute Force solution approach</summary>
+  You can solve this problem with two nested loops. However, you can solve this problem with a more optimal approach using a hash set.
+</details>
+
+<details>
+  <summary>Brute Force solution</summary>
 
 ```js
-/* 
- BRUTE FORCE
- Take one number at a time starting from array[0], add it to all the other numbers remaining in the array till you find the sum to be equal to the target sum
-*/
-
 function twoNumberSum(array, targetSum) {
   // Write your code here.
   for(let i=0; i<array.length - 1; i++){
@@ -37,6 +39,15 @@ function twoNumberSum(array, targetSum) {
 // Time complexity - O(n^2)
 // Space complexity - O(1)
 ```
+</details>
+
+<details>
+  <summary>Optimal solution approach 1</summary>
+  Create a hash set of all the array elements. Search for y (y = targetSum - x) in the hash set for every number in the array.
+</details>
+
+<details>
+  <summary>Optimal solution 1</summary>
 
 ```js
 /*
@@ -61,9 +72,19 @@ function twoNumberSum(array, targetSum) {
 // Time complexity - O(n)
 // Space complexity - O(n)
 ```
+</details>
 
 > [!NOTE]
 > The solution below will not work if you are asked to return the indices instead of the elements 
+
+
+<details>
+  <summary>Optimal solution approach 2</summary>
+  Sort the array and use the two pointer approach
+</details>
+
+<details>
+  <summary>Optimal solution 2</summary>
 
 ```js
 /*
@@ -90,3 +111,23 @@ function twoNumberSum(array, targetSum) {
 
 // Time complexity - O(nlog(n))
 // Space complexity - O(1)
+```
+</details>
+
+### Similar Problems
+
+- [Two Sum II - Input array is sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
+  - use the two pointer approach
+- [Two Sum III - Data structure design](https://leetcode.com/problems/two-sum-iii-data-structure-design/)
+  - use a hashmap to store the numbers and their frequency
+  - while searching for the number, check if the number is not the same as the (targetSum - number)
+  - if the number is the same as the (targetSum - number), check if the frequency of the number is greater than 1
+    - if the frequency is greater than 1, return true
+  - if the number is not the same as the (targetSum - number), check if the number is present in the hashmap
+  - if the number is present in the hashmap, return true
+- [Two Sum Less Than K](https://leetcode.com/problems/two-sum-less-than-k/)
+  - sort the array
+  - use the two pointer approach
+  - if the sum is less than k, update the maxSum
+- [Two Sum IV - Input is a BST](https://leetcode.com/problems/two-sum-iv-input-is-a-bst/)
+- [Two Sum BSTs](https://leetcode.com/problems/two-sum-bsts/)

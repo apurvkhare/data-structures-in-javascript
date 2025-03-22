@@ -14,6 +14,13 @@ sqeuence = [1, 6, -1, 10]
 
 true
 ```
+<details>
+  <summary>Solution approach</summary>
+  You can solve this problem with two pointers. You can iterate through the array and sequence and check if the elements are equal. If they are equal, increment both pointers. If they are not equal, increment the array pointer. If the sequence pointer reaches the end, return true.
+</details>
+
+<details>
+  <summary>Solution</summary>
 
 ```js
 /*
@@ -43,3 +50,35 @@ function isValidSubsequence(array, sequence) {
 
 // Time complexity - O(n)
 // Space complexity - O(1)
+
+```
+</details>
+
+<details>
+  <summary>Slightly optimized solution</summary>
+
+```js
+//slightly optimized version with same time complexity
+function isValidSubsequence(array, sequence) {
+  // Write your code here.
+  let p1 = 0, p2 = 0
+
+  while (p1 < array.length && p2 < sequence.length) {
+    if(array[p1] === sequence[p2])
+      p2++
+    p1++
+  }
+
+  if(p2 === sequence.length)
+    return true
+
+  return false
+}
+```
+</details>
+
+### Similar Problems
+
+- [Is Subsequence](https://leetcode.com/problems/is-subsequence/description/)
+- [!Number of Matching Subsequences](https://leetcode.com/problems/number-of-matching-subsequences/description/)
+- [Check If a String Is a Valid Sequence from Root to Leaves Path in a Binary Tree](https://leetcode.com/problems/check-if-a-string-is-a-valid-sequence-from-root-to-leaves-path-in-a-binary-tree/description/)
